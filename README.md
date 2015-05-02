@@ -71,7 +71,7 @@ public class Example : MessageReceiver<SomeMessage>, MessageReceiver<AnotherMess
 
 #Compile time vs runtime safety
 
-The strength of this implementation is in its compile-time safety. Having messages be structs provides multiple upsides.
+The strength of this messenger is in its compile-time safety. Having messages be structs provides multiple upsides.
 
 First of all, an object is not only the key to trigger a message, but also contains the data for the message. You don't have to seperate the message and the data. The message *is* the data.
 
