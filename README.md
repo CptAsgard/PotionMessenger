@@ -57,7 +57,7 @@ public class Example : MessageReceiver<SomeMessage>, MessageReceiver<AnotherMess
   
     public void HandleMessage( AnotherMessage msg )
     {
-        Console.WriteLine( s.num );
+        Console.WriteLine( msg.num );
     }
 }
 ```
