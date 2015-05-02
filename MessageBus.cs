@@ -137,6 +137,11 @@ public static class MsgRegist
     {
         bus.AddSubscriber<MessageType>( caller );
     }
+
+        public static void Unsubscribe<MessageType>( this MessageReceiver<MessageType> caller, MessageBus bus ) where MessageType : struct
+        {
+            bus.RemoveSubscriber<MessageType>( caller );
+        }
 }
 
 public interface MessageReceiverBase { };
