@@ -72,9 +72,9 @@ msg.num = 5;
 msgbus.Route( msg );
 ```
 
-#Compile time vs runtime safety
+#Compile time safety vs runtime exceptions
 
-The strength of this messenger is in its compile-time safety. Having messages be structs provides multiple upsides.
+The strength of this messenger is in its compile-time safety. Compile-time safety means that errors in your code are raised when you're compiling the code, not when the code is running. This is the result of using messages as structs. Having messages be structs provides multiple upsides.
 
 First of all, an object is not only the key to trigger a message, but also contains the data for the message. You don't have to seperate the message and the data. The message *is* the data.
 
