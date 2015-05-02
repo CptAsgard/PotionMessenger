@@ -1,7 +1,7 @@
 # PotionMessenger
 C# compile-time safe messaging/event system.
 
-# How To Use'
+# How To Use
 
 You can listen to a single message in the following manner.
 ```C#
