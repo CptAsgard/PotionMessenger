@@ -51,7 +51,7 @@ public struct AnotherMessage
 
 public class Example : MessageReceiver<SomeMessage>, MessageReceiver<AnotherMessage>
 {
-    public void Init( MessageBus msgbus )
+    public Example( MessageBus msgbus )
     {
         // Listen to messages of type
         this.Subscribe<SomeMessage>( msgbus );
