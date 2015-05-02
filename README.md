@@ -13,18 +13,10 @@ public struct SomeMessage
 
 public class Example : MessageReceiver<SomeMessage>
 {
-    public Example()
+    public Example( MessageBus msgbus )
     {
-        MessageBus msgbus = new MessageBus();
-      
         // Listen to messages of type
         this.Subscribe<SomeMessage>( msgbus );
-      
-        // Send messages of type
-        SomeMessage msg = new SomeMessage();
-        msg.num = 5;
-
-        msgbus.Route( msg );
     }
 
     public void HandleMessage( SomeMessage msg )
@@ -68,6 +60,16 @@ public class Example : MessageReceiver<SomeMessage>, MessageReceiver<AnotherMess
         Console.WriteLine( s.num );
     }
 }
+```
+
+To send a message all you have to do is:
+
+```C#
+// Send messages of type
+SomeMessage msg = new SomeMessage();
+msg.num = 5;
+
+msgbus.Route( msg );
 ```
 
 #Compile time vs runtime safety
