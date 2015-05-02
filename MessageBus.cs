@@ -7,34 +7,7 @@ using System.Collections.Generic;
  * @version     1.0
  * @since       02-05-2015
  * 
- *  vv USAGE EXAMPLE vv
- *  
- *  public struct SomeMessage
- *  {
- *      public int num;
- *  }
- *
- *  public class Example : MessageReceiver<SomeMessage>
- *  {
- *      public void Func()
- *      {
- *          MessageBus msgbus = new MessageBus();
- *          
- *          // Listen to messages of type
- *          this.Subscribe<SomeMessage>( msgbus );
- *          
- *          // Send messages of type
- *          SomeMessage msg = new SomeMessage();
- *          msg.num = 5;
- *
- *          msgbus.Route( msg );
- *     }
- *
- *      public void HandleMessage( SomeMessage msg )
- *      {
- *          Console.WriteLine( msg.num );
- *      }
- *  }
+ * For usage examples please see: https://github.com/CptAsgard/PotionMessenger
  */
 public class MessageBus
 {
