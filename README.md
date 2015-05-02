@@ -12,7 +12,7 @@ public struct SomeMessage
 
 public class Example : MessageReceiver<SomeMessage>
 {
-    public void Func()
+    public Example()
     {
         MessageBus msgbus = new MessageBus();
       
@@ -32,6 +32,8 @@ public class Example : MessageReceiver<SomeMessage>
     }
 }
 ```
+
+If you're using Unity, you should use Awake() instead of the constructor to start listening to messages.
 
 If you'd like to listen to multiple messages, you should implement the MessageReceiver interface multiple times. Once for each message type. 
 
