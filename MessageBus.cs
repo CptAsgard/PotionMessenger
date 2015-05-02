@@ -11,7 +11,7 @@ using System.Collections.Generic;
  */
 public class MessageBus
 {
-    public Dictionary<Type, List<MessageReceiverBase>> subscribers;
+    private Dictionary<Type, List<MessageReceiverBase>> subscribers;
 
     public MessageBus()
     {
