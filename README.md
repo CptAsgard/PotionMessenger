@@ -1,5 +1,6 @@
 # PotionMessenger
-C# compile-time safe messaging/event system.
+C# compile-time safe messaging/event system. 
+The code is unlicensed, so feel free to use however you like without requiring credit!
 
 # How To Use
 
