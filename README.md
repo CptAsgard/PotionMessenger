@@ -88,7 +88,7 @@ In Unity, this means calling RemoveSubscriber() in OnDestroy()
 ``` C#
 ~Example()
 {
-    msgbus.RemoveSubscriber<TestMessage>( this );
+    this.Unsubscribe<TestMessage>( msgbus );
 }
 ```
 
@@ -97,6 +97,6 @@ In Unity, this means calling RemoveSubscriber() in OnDestroy()
 ``` C#
 void OnDisable()
 {
-    msgbus.RemoveSubscriber<TestMessage>( this );
+    this.Unsubscribe<TestMessage>( msgbus );
 }
 ```
