@@ -1,4 +1,10 @@
-﻿using System;
+﻿#define MESSAGEBUS_THROWEXCEPTIONS // Comment this if you'd like to recieve no exceptions from the messagebus.
+
+#if MESSAGEBUS_THROWEXCEPTIONS
+#define MESSAGEBUS_REQUIRELISTENER // Comment this if you don't want listeners to be required for sending messages.
+#endif
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,7 +24,6 @@ public class MessageBus
         subscribers = new Dictionary<Type, List<MessageReceiverBase>>();
     }
 
-    // type = message type not receiver type!
     public void AddSubscriber<Message>( MessageReceiver<Message> receiver ) where Message : struct
     {
         Type type = typeof( Message );
@@ -36,8 +41,11 @@ public class MessageBus
 
         if( !subscribers.ContainsKey( type ) )
         {
-            Console.WriteLine( "REMOVING SUBSCRIBER - MESSAGE DOES NOT EXIST" );
-            return;
+#if MESSAGEBUS_THROWEXCEPTIONS
+            throw new ArgumentException( string.Format( "Removing subscriber, but the message type \"{0}\" isn't registered." ), type.ToString() );
+#else
+                return;
+#endif
         }
 
         var list = subscribers[type];
@@ -57,23 +65,23 @@ public class MessageBus
             }
         }
 
+#if MESSAGEBUS_THROWEXCEPTIONS
         if( !existed )
         {
-            Console.Write( "REMOVING SUBSCRIBER - SUBSCRIBER DOES NOT EXIST" );
-            return;
+            throw new ArgumentException( string.Format( "Removing subscriber, but the supplied receiver isn't subscribed to message type \"{0}\".", type.ToString() ) );
         }
+#endif
     }
 
     public void Route<Message>( Message mess ) where Message : struct
     {
         List<MessageReceiverBase> list;
-        if( !subscribers.ContainsKey( typeof( Message ) ) )
-            return;
-
-        list = subscribers[typeof(Message)];
-
-        if( list.Count == 0 )
-            return;
+        if( !subscribers.TryGetValue( typeof( Message ), out list ) )
+#if MESSAGEBUS_REQUIRELISTENER
+            throw new ArgumentException( string.Format( "Attempting to send message of type \"{0}\", but no listener for this type has been found. Make sure this.Subscribe<{0}>(MessageBus) has been called, or that all listeners to this message haven't been unsubscribed.", typeof( Message ).ToString() ) );
+#else
+                return;
+#endif
 
         foreach( MessageReceiverBase b in list )
         {
