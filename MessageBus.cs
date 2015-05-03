@@ -42,7 +42,7 @@ public class MessageBus
         if( !subscribers.ContainsKey( type ) )
         {
 #if MESSAGEBUS_THROWEXCEPTIONS
-            throw new ArgumentException( string.Format( "Removing subscriber, but the message type \"{0}\" isn't registered." ), type.ToString() );
+            throw new ArgumentException( string.Format( "Removing subscriber, but the message type \"{0}\" isn't registered.", type.ToString() ) );
 #else
                 return;
 #endif
