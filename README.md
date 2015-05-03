@@ -84,7 +84,7 @@ Second of all, because an object has a struct name, there's no chance you'll lis
 
 If your object is done listening to a certain type of message, or the object is ready to do clean-up, make sure to call RemoveSubscriber()! If you don't, this can cause memory leaks.
 
-In Unity, this means calling RemoveSubscriber() in OnDestroy()
+In Unity, this means calling Unsubscribe in OnDestroy()
 
 ### Generic C# Example
 
